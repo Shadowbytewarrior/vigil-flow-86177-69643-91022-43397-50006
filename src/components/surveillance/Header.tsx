@@ -9,10 +9,10 @@ export const Header = () => {
       <div className="container mx-auto px-3 sm:px-4 py-2 sm:py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 sm:gap-3 cursor-pointer" onClick={() => navigate("/home")}>
-            <div className="p-1.5 sm:p-2 rounded-xl animate-scale-in shrink-0" style={{
+            <div className="p-2 sm:p-2.5 rounded-full animate-scale-in shrink-0" style={{
             background: 'linear-gradient(135deg, hsl(214 90% 60%), hsl(270 70% 65%))'
           }}>
-              <img src={vigilFlowLogo} alt="Vigil Flow" className="w-5 h-5 sm:w-6 sm:h-6" />
+              <img src={vigilFlowLogo} alt="Vigil Flow" className="w-5 h-5 sm:w-6 sm:h-6 rounded-full" />
             </div>
             <div className="min-w-0">
               <h1 className="text-base sm:text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent truncate">Shadowbyte</h1>
