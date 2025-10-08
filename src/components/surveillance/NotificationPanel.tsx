@@ -90,7 +90,7 @@ export const NotificationPanel = ({ open, onOpenChange }: NotificationPanelProps
               variant="ghost"
               size="sm"
               onClick={markAllAsRead}
-              className="text-xs sm:text-sm h-8 px-2 sm:px-3 whitespace-nowrap"
+              className="text-xs sm:text-sm h-7 sm:h-8 px-2 sm:px-3 whitespace-nowrap hover:bg-muted"
             >
               Mark all read
             </Button>
@@ -126,10 +126,10 @@ export const NotificationPanel = ({ open, onOpenChange }: NotificationPanelProps
                         <Button
                           variant="ghost"
                           size="icon"
-                          className="h-6 w-6 sm:h-7 sm:w-7 flex-shrink-0 -mt-1 -mr-1"
+                          className="h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0 -mt-0.5 -mr-0.5 sm:-mt-1 sm:-mr-1 hover:bg-muted rounded-md"
                           onClick={() => console.log("Delete", notification.id)}
                         >
-                          <X className="w-3 h-3 sm:w-4 sm:h-4" />
+                          <X className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                         </Button>
                       </div>
                       <p className="text-xs sm:text-sm text-muted-foreground mb-2 leading-relaxed">
@@ -147,10 +147,10 @@ export const NotificationPanel = ({ open, onOpenChange }: NotificationPanelProps
         </ScrollArea>
 
         {mockNotifications.length > 0 && (
-          <div className="flex-shrink-0 p-4 sm:p-6 border-t bg-background">
+          <div className="flex-shrink-0 p-3 sm:p-4 md:p-6 border-t bg-background">
             <Button
               variant="outline"
-              className="w-full h-10 sm:h-11 text-sm sm:text-base"
+              className="w-full h-9 sm:h-10 md:h-11 text-xs sm:text-sm md:text-base font-medium"
               onClick={clearAll}
             >
               Clear All Notifications
