@@ -138,9 +138,7 @@ const Home = () => {
               <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground mb-1 sm:mb-2"> Dashboard</h1>
               <p className="text-xs sm:text-sm text-muted-foreground">AI-Powered Security Management Platform</p>
             </div>
-            <div className="p-2 sm:p-3 bg-primary/10 rounded-lg shrink-0">
-              <Brain className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
-            </div>
+            
           </div>
         </div>
 
