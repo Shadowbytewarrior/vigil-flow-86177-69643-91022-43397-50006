@@ -1,10 +1,15 @@
 import { Bell, Settings as SettingsIcon, User } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { NotificationPanel } from "./NotificationPanel";
 import vigilFlowLogo from "@/assets/vigil-flow-logo.png";
+
 export const Header = () => {
   const navigate = useNavigate();
+  const [notificationOpen, setNotificationOpen] = useState(false);
+  
   return <header className="neu-card border-b border-border sticky top-0 z-50 backdrop-blur-sm">
       <div className="container mx-auto px-3 sm:px-4 py-2 sm:py-3">
         <div className="flex items-center justify-between">
@@ -26,12 +31,22 @@ export const Header = () => {
               <span className="text-[10px] sm:text-xs font-medium text-success whitespace-nowrap">System Active</span>
             </div>
 
-            <Button variant="ghost" size="icon" className="relative h-8 w-8 sm:h-10 sm:w-10">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="relative h-8 w-8 sm:h-10 sm:w-10"
+              onClick={() => setNotificationOpen(true)}
+            >
               <Bell className="w-4 h-4 sm:w-5 sm:h-5 text-foreground" />
               <Badge className="absolute -top-0.5 -right-0.5 sm:-top-1 sm:-right-1 w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center p-0 bg-destructive text-[8px] sm:text-[10px]">
                 3
               </Badge>
             </Button>
+
+            <NotificationPanel 
+              open={notificationOpen} 
+              onOpenChange={setNotificationOpen}
+            />
 
             <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-10 sm:w-10" onClick={() => navigate("/settings")}>
               <SettingsIcon className="w-4 h-4 sm:w-5 sm:h-5 text-foreground" />
