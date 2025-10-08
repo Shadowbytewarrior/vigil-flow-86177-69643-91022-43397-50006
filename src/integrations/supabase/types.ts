@@ -14,16 +14,437 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      alerts: {
+        Row: {
+          acknowledged_at: string | null
+          acknowledged_by: string | null
+          alert_type: string
+          camera_id: string | null
+          confidence_score: number | null
+          created_at: string
+          description: string
+          id: string
+          location: string
+          metadata: Json | null
+          resolved_at: string | null
+          severity: string
+          status: string
+          title: string
+        }
+        Insert: {
+          acknowledged_at?: string | null
+          acknowledged_by?: string | null
+          alert_type: string
+          camera_id?: string | null
+          confidence_score?: number | null
+          created_at?: string
+          description: string
+          id?: string
+          location: string
+          metadata?: Json | null
+          resolved_at?: string | null
+          severity: string
+          status?: string
+          title: string
+        }
+        Update: {
+          acknowledged_at?: string | null
+          acknowledged_by?: string | null
+          alert_type?: string
+          camera_id?: string | null
+          confidence_score?: number | null
+          created_at?: string
+          description?: string
+          id?: string
+          location?: string
+          metadata?: Json | null
+          resolved_at?: string | null
+          severity?: string
+          status?: string
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "alerts_camera_id_fkey"
+            columns: ["camera_id"]
+            isOneToOne: false
+            referencedRelation: "cameras"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "alerts_camera_id_fkey"
+            columns: ["camera_id"]
+            isOneToOne: false
+            referencedRelation: "cameras_public"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      audit_logs: {
+        Row: {
+          action: string
+          created_at: string
+          id: string
+          ip_address: string | null
+          new_data: Json | null
+          old_data: Json | null
+          record_id: string | null
+          table_name: string
+          user_id: string | null
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          id?: string
+          ip_address?: string | null
+          new_data?: Json | null
+          old_data?: Json | null
+          record_id?: string | null
+          table_name: string
+          user_id?: string | null
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          id?: string
+          ip_address?: string | null
+          new_data?: Json | null
+          old_data?: Json | null
+          record_id?: string | null
+          table_name?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      camera_credentials: {
+        Row: {
+          camera_id: string
+          created_at: string
+          id: string
+          rtsp_url: string
+          updated_at: string
+        }
+        Insert: {
+          camera_id: string
+          created_at?: string
+          id?: string
+          rtsp_url: string
+          updated_at?: string
+        }
+        Update: {
+          camera_id?: string
+          created_at?: string
+          id?: string
+          rtsp_url?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "camera_credentials_camera_id_fkey"
+            columns: ["camera_id"]
+            isOneToOne: true
+            referencedRelation: "cameras"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "camera_credentials_camera_id_fkey"
+            columns: ["camera_id"]
+            isOneToOne: true
+            referencedRelation: "cameras_public"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      cameras: {
+        Row: {
+          building: string | null
+          camera_type: string
+          coverage_area: string | null
+          created_at: string
+          floor: string | null
+          id: string
+          latitude: number | null
+          location: string
+          longitude: number | null
+          name: string
+          rtsp_url: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          building?: string | null
+          camera_type: string
+          coverage_area?: string | null
+          created_at?: string
+          floor?: string | null
+          id?: string
+          latitude?: number | null
+          location: string
+          longitude?: number | null
+          name: string
+          rtsp_url?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          building?: string | null
+          camera_type?: string
+          coverage_area?: string | null
+          created_at?: string
+          floor?: string | null
+          id?: string
+          latitude?: number | null
+          location?: string
+          longitude?: number | null
+          name?: string
+          rtsp_url?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      incidents: {
+        Row: {
+          assigned_to: string | null
+          camera_id: string | null
+          created_at: string
+          description: string
+          id: string
+          incident_time: string
+          location: string
+          reported_by: string | null
+          resolved_at: string | null
+          severity: string
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          assigned_to?: string | null
+          camera_id?: string | null
+          created_at?: string
+          description: string
+          id?: string
+          incident_time?: string
+          location: string
+          reported_by?: string | null
+          resolved_at?: string | null
+          severity: string
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          assigned_to?: string | null
+          camera_id?: string | null
+          created_at?: string
+          description?: string
+          id?: string
+          incident_time?: string
+          location?: string
+          reported_by?: string | null
+          resolved_at?: string | null
+          severity?: string
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "incidents_camera_id_fkey"
+            columns: ["camera_id"]
+            isOneToOne: false
+            referencedRelation: "cameras"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "incidents_camera_id_fkey"
+            columns: ["camera_id"]
+            isOneToOne: false
+            referencedRelation: "cameras_public"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          badge_number: string | null
+          created_at: string
+          department: string | null
+          email: string
+          full_name: string
+          id: string
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          badge_number?: string | null
+          created_at?: string
+          department?: string | null
+          email: string
+          full_name: string
+          id: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          badge_number?: string | null
+          created_at?: string
+          department?: string | null
+          email?: string
+          full_name?: string
+          id?: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      video_uploads: {
+        Row: {
+          analysis_results: Json | null
+          analysis_status: string
+          camera_id: string | null
+          created_at: string
+          duration_seconds: number | null
+          file_name: string
+          file_size: number
+          id: string
+          storage_path: string
+          tags: string[] | null
+          thumbnail_url: string | null
+          upload_date: string
+          uploaded_by: string
+        }
+        Insert: {
+          analysis_results?: Json | null
+          analysis_status?: string
+          camera_id?: string | null
+          created_at?: string
+          duration_seconds?: number | null
+          file_name: string
+          file_size: number
+          id?: string
+          storage_path: string
+          tags?: string[] | null
+          thumbnail_url?: string | null
+          upload_date?: string
+          uploaded_by: string
+        }
+        Update: {
+          analysis_results?: Json | null
+          analysis_status?: string
+          camera_id?: string | null
+          created_at?: string
+          duration_seconds?: number | null
+          file_name?: string
+          file_size?: number
+          id?: string
+          storage_path?: string
+          tags?: string[] | null
+          thumbnail_url?: string | null
+          upload_date?: string
+          uploaded_by?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "video_uploads_camera_id_fkey"
+            columns: ["camera_id"]
+            isOneToOne: false
+            referencedRelation: "cameras"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "video_uploads_camera_id_fkey"
+            columns: ["camera_id"]
+            isOneToOne: false
+            referencedRelation: "cameras_public"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
-      [_ in never]: never
+      cameras_public: {
+        Row: {
+          building: string | null
+          camera_type: string | null
+          coverage_area: string | null
+          created_at: string | null
+          floor: string | null
+          id: string | null
+          latitude: number | null
+          location: string | null
+          longitude: number | null
+          name: string | null
+          status: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          building?: string | null
+          camera_type?: string | null
+          coverage_area?: string | null
+          created_at?: string | null
+          floor?: string | null
+          id?: string | null
+          latitude?: number | null
+          location?: string | null
+          longitude?: number | null
+          name?: string | null
+          status?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          building?: string | null
+          camera_type?: string | null
+          coverage_area?: string | null
+          created_at?: string | null
+          floor?: string | null
+          id?: string | null
+          latitude?: number | null
+          location?: string | null
+          longitude?: number | null
+          name?: string | null
+          status?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "security" | "faculty"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +571,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "security", "faculty"],
+    },
   },
 } as const
